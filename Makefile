@@ -1,6 +1,6 @@
 .SUFFIXES:
 ifeq ($(strip $(DEVKITPRO)),)
-$(error "Define DEVKITPRO (usa la imagen devkitpro/devkitppc)")
+$(error "Define DEVKITPRO")
 endif
 TOPDIR ?= $(CURDIR)
 include $(DEVKITPRO)/wut/share/wut_rules
