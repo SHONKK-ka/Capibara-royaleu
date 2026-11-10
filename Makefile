@@ -22,7 +22,8 @@ CFLAGS   += $(INCLUDE) -D__WIIU__ -D__WUT__ $(shell $(PORTLIBS_PPC)/bin/sdl2-con
 CXXFLAGS := $(CFLAGS) -std=c++17
 ASFLAGS  := -g $(ARCH)
 LDFLAGS  = -g $(ARCH) $(RPXSPECS) -Wl,-Map,$(notdir $*.map)
-LIBS     := -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2 -lwut
+SHARP    := $(firstword $(wildcard $(PORTLIBS_PPC)/lib/libsharpyuv.a $(PORTLIBS_WIIU)/lib/libsharpyuv.a))
+LIBS     := -lSDL2_image -lwebp $(if $(SHARP),-lsharpyuv) -ljpeg -lpng -lz -lSDL2 -lwut -lm
 LIBDIRS  := $(PORTLIBS) $(WUT_ROOT)
 
 ifneq ($(BUILD),$(notdir $(CURDIR)))
